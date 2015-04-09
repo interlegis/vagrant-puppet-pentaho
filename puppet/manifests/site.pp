@@ -3,7 +3,7 @@ $pentaho_dir = '/srv/sigi'
 include apt
 
 apt::key { 'webupd8team':
-  key => "EEA14886",
+  key => "7B2C3B0889BF5709A105D03AC2518248EEA14886",
   key_server => "keyserver.ubuntu.com",
 }
 

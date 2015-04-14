@@ -15,10 +15,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, :path => "puppet/bootstrap.sh"
 
-  # config.vm.provision :shell,
-  #   :path => "puppet/puppet_module_install_from_github.sh",
-  #   :args => "jfryman-nginx interlegis/puppet-nginx"
-
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "site.pp"

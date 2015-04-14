@@ -1,29 +1,7 @@
-$pentaho_dir = '/srv/sigi'
+node default {
 
-include apt
+    include pentaho
 
-apt::key { 'webupd8team':
-  key => "7B2C3B0889BF5709A105D03AC2518248EEA14886",
-  key_server => "keyserver.ubuntu.com",
-}
+    package { ['tree']: }
 
-apt::ppa { 'ppa:webupd8team/java':
-  require => Apt::Key["webupd8team"],
-}
-
-exec {
-  'set-licence-selected':
-  command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections';
-
-  'set-licence-seen':
-  command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections';
-}
-
-package { 'oracle-java7-installer':
-  ensure => present,
-  require => [
-    Apt::Ppa["ppa:webupd8team/java"],
-    Exec['set-licence-selected'],
-    Exec['set-licence-seen'],
-  ],
 }
